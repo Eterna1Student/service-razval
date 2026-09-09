@@ -45,63 +45,63 @@ export default function Calculator() {
     setExtras((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
 
   return (
-    <section id="calculator" className="scroll-mt-20 border-y border-border bg-secondary/40 py-20 sm:py-24">
+    <section id="calculator" className="scroll-mt-20 border-y border-border bg-secondary/40 py-12 sm:py-20 lg:py-24">
       <div className="container-x">
-        <div className="mb-12 max-w-2xl">
-          <span className="font-display flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            <CalcIcon className="h-4 w-4" />
+        <div className="mb-8 sm:mb-12 max-w-2xl">
+          <span className="font-display flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            <CalcIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             Калькулятор
           </span>
-          <h2 className="font-display mt-3 text-4xl font-bold uppercase sm:text-5xl">
+          <h2 className="font-display mt-2 sm:mt-3 text-h2 font-bold uppercase">
             Сколько будет стоить?
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground">
             Соберите свою услугу — итоговая цена совпадёт с той, что мы назовём в сервисе.
             Без скрытых доплат.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
-          <div className="space-y-8">
+        <div className="grid gap-5 sm:gap-8 lg:grid-cols-[1fr_380px]">
+          <div className="space-y-5 sm:space-y-8">
             <Card className="border-border/60">
-              <CardHeader>
-                <CardTitle className="font-display text-xl uppercase">1. Масло</CardTitle>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="font-display text-lg sm:text-xl uppercase">1. Масло</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-5">
-                <div className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4">
-                  <Checkbox id="ownOil" checked={ownOil} onCheckedChange={(v) => setOwnOil(v === true)} />
-                  <Label htmlFor="ownOil" className="cursor-pointer leading-snug">
+              <CardContent className="space-y-4 sm:space-y-5 p-4 sm:p-6 pt-0 sm:pt-0">
+                <div className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-3 sm:p-4">
+                  <Checkbox id="ownOil" checked={ownOil} onCheckedChange={(v) => setOwnOil(v === true)} className="mt-0.5" />
+                  <Label htmlFor="ownOil" className="cursor-pointer leading-snug text-sm sm:text-base">
                     Привезу своё масло
-                    <span className="block text-sm text-muted-foreground">оплачивается только работа и фильтры</span>
+                    <span className="block text-xs sm:text-sm text-muted-foreground">оплачивается только работа и фильтры</span>
                   </Label>
                 </div>
                 {!ownOil && (
-                  <RadioGroup value={oilType} onValueChange={setOilType} className="grid gap-3 sm:grid-cols-3">
+                  <RadioGroup value={oilType} onValueChange={setOilType} className="grid gap-2 sm:gap-3 grid-cols-1 sm:grid-cols-3">
                     {calc.oilTypes.map((o) => (
                       <Label
                         key={o.id}
                         htmlFor={`oil-${o.id}`}
-                        className={`flex cursor-pointer flex-col gap-1 rounded-lg border p-4 transition-colors ${
+                        className={`flex cursor-pointer flex-col gap-1 rounded-lg border p-3 sm:p-4 transition-colors ${
                           oilType === o.id ? 'border-primary bg-primary/10' : 'border-border hover:border-primary/40'
                         }`}
                       >
                         <span className="flex items-center gap-2">
                           <RadioGroupItem value={o.id} id={`oil-${o.id}`} />
-                          <span className="font-semibold">{o.label}</span>
+                          <span className="font-semibold text-sm sm:text-base">{o.label}</span>
                         </span>
-                        <span className="pl-6 text-sm text-muted-foreground">{fmt(o.perLiter)}/л</span>
+                        <span className="pl-6 text-xs sm:text-sm text-muted-foreground">{fmt(o.perLiter)}/л</span>
                       </Label>
                     ))}
                   </RadioGroup>
                 )}
                 <div>
-                  <p className="mb-3 text-sm font-semibold text-muted-foreground">Объём двигателя</p>
-                  <RadioGroup value={volume} onValueChange={setVolume} className="grid gap-3 sm:grid-cols-3">
+                  <p className="mb-2 sm:mb-3 text-sm font-semibold text-muted-foreground">Объём двигателя</p>
+                  <RadioGroup value={volume} onValueChange={setVolume} className="grid gap-2 sm:gap-3 grid-cols-3">
                     {calc.volumes.map((v) => (
                       <Label
                         key={v.id}
                         htmlFor={`vol-${v.id}`}
-                        className={`flex cursor-pointer items-center gap-2 rounded-lg border p-4 text-sm transition-colors ${
+                        className={`flex cursor-pointer items-center gap-2 rounded-lg border p-2.5 sm:p-4 text-xs sm:text-sm transition-colors ${
                           volume === v.id ? 'border-primary bg-primary/10' : 'border-border hover:border-primary/40'
                         }`}
                       >
@@ -115,19 +115,19 @@ export default function Calculator() {
             </Card>
 
             <Card className="border-border/60">
-              <CardHeader>
-                <CardTitle className="font-display text-xl uppercase">2. Фильтры и дополнительно</CardTitle>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="font-display text-lg sm:text-xl uppercase">2. Фильтры и дополнительно</CardTitle>
               </CardHeader>
-              <CardContent className="grid gap-3 sm:grid-cols-3">
+              <CardContent className="grid gap-2 sm:gap-3 grid-cols-1 sm:grid-cols-3 p-4 sm:p-6 pt-0 sm:pt-0">
                 {calc.extras.map((e) => (
                   <Label
                     key={e.id}
                     htmlFor={`ex-${e.id}`}
-                    className={`flex cursor-pointer flex-col gap-1 rounded-lg border p-4 transition-colors ${
+                    className={`flex cursor-pointer flex-col gap-1 rounded-lg border p-3 sm:p-4 transition-colors ${
                       extras.includes(e.id) ? 'border-primary bg-primary/10' : 'border-border hover:border-primary/40'
                     }`}
                   >
-                    <span className="flex items-center gap-2 font-semibold">
+                    <span className="flex items-center gap-2 font-semibold text-sm sm:text-base">
                       <Checkbox
                         id={`ex-${e.id}`}
                         checked={extras.includes(e.id)}
@@ -135,23 +135,23 @@ export default function Calculator() {
                       />
                       {e.label}
                     </span>
-                    <span className="pl-6 text-sm text-muted-foreground">{fmt(e.price)}</span>
+                    <span className="pl-6 text-xs sm:text-sm text-muted-foreground">{fmt(e.price)}</span>
                   </Label>
                 ))}
               </CardContent>
             </Card>
 
             <Card className="border-border/60">
-              <CardHeader>
-                <CardTitle className="font-display text-xl uppercase">3. Развал-схождение 3D</CardTitle>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="font-display text-lg sm:text-xl uppercase">3. Развал-схождение 3D</CardTitle>
               </CardHeader>
-              <CardContent>
-                <RadioGroup value={alignment} onValueChange={setAlignment} className="grid gap-3 sm:grid-cols-4">
+              <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
+                <RadioGroup value={alignment} onValueChange={setAlignment} className="grid gap-2 sm:gap-3 grid-cols-2 sm:grid-cols-4">
                   {calc.alignmentOptions.map((a) => (
                     <Label
                       key={a.id}
                       htmlFor={`al-${a.id}`}
-                      className={`flex cursor-pointer items-center gap-2 rounded-lg border p-4 text-sm transition-colors ${
+                      className={`flex cursor-pointer items-center gap-2 rounded-lg border p-2.5 sm:p-4 text-xs sm:text-sm transition-colors ${
                         alignment === a.id ? 'border-primary bg-primary/10' : 'border-border hover:border-primary/40'
                       }`}
                     >
@@ -164,16 +164,15 @@ export default function Calculator() {
             </Card>
           </div>
 
-          {/* Итог */}
           <div className="lg:sticky lg:top-24 lg:self-start">
             <Card className="border-primary/40 bg-card shadow-xl shadow-primary/5">
-              <CardHeader>
-                <CardTitle className="font-display text-2xl uppercase">Ваш расчёт</CardTitle>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="font-display text-xl sm:text-2xl uppercase">Ваш расчёт</CardTitle>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2.5">
+              <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
+                <ul className="space-y-2 sm:space-y-2.5">
                   {result.lines.map((line) => (
-                    <li key={line.label} className="flex items-baseline justify-between gap-3 text-sm">
+                    <li key={line.label} className="flex items-baseline justify-between gap-2 sm:gap-3 text-xs sm:text-sm">
                       <span className="text-muted-foreground">{line.label}</span>
                       <span className="shrink-0 font-semibold">
                         {line.price > 0 ? fmt(line.price) : '—'}
@@ -181,16 +180,16 @@ export default function Calculator() {
                     </li>
                   ))}
                 </ul>
-                <Separator className="my-4" />
-                <div className="flex items-baseline justify-between">
-                  <span className="font-display text-lg font-semibold uppercase">Итого</span>
-                  <span className="font-display text-4xl font-bold text-primary">{fmt(result.total)}</span>
+                <Separator className="my-3 sm:my-4" />
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="font-display text-base sm:text-lg font-semibold uppercase">Итого</span>
+                  <span className="font-display text-2xl sm:text-4xl font-bold text-primary">{fmt(result.total)}</span>
                 </div>
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                   Точная стоимость зависит от модели авто — подтвердим по телефону
                   до начала работ. Расхождений с калькулятором не будет.
                 </p>
-                <Button asChild className="mt-5 w-full gap-2 font-bold" size="lg">
+                <Button asChild className="mt-4 sm:mt-5 w-full gap-2 font-bold" size="lg">
                   <a href="#booking">
                     Записаться на эту услугу
                     <ArrowRight className="h-5 w-5" />

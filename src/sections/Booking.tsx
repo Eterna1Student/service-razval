@@ -45,31 +45,31 @@ export default function Booking() {
   const tgLink = `https://t.me/${business.telegram}?text=${encodeURIComponent(message())}`
 
   return (
-    <section id="booking" className="scroll-mt-20 border-y border-border bg-secondary/40 py-20 sm:py-24">
+    <section id="booking" className="scroll-mt-20 border-y border-border bg-secondary/40 py-12 sm:py-20 lg:py-24">
       <div className="container-x">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
           <div>
-            <span className="font-display flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              <CalendarClock className="h-4 w-4" />
+            <span className="font-display flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              <CalendarClock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               Онлайн-запись
             </span>
-            <h2 className="font-display mt-3 text-4xl font-bold uppercase sm:text-5xl">
+            <h2 className="font-display mt-2 sm:mt-3 text-h2 font-bold uppercase">
               Запишитесь за минуту
             </h2>
-            <p className="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-3 sm:mt-4 max-w-md text-base sm:text-lg leading-relaxed text-muted-foreground">
               Оставьте заявку — перезвоним в течение 10 минут в рабочее время
               и подтвердим время. Или просто приезжайте: без записи
               принимаем по очереди, ожидание обычно не больше 15 минут.
             </p>
-            <div className="mt-8 space-y-3">
-              <a href={business.phoneHref} className="flex items-center gap-3 text-lg font-semibold hover:text-primary">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <div className="mt-6 sm:mt-8 space-y-3">
+              <a href={business.phoneHref} className="flex items-center gap-3 text-base sm:text-lg font-semibold hover:text-primary">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Phone className="h-5 w-5" />
                 </span>
                 {business.phone}
               </a>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <div className="flex items-center gap-3 text-sm sm:text-base text-muted-foreground">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <MessageCircle className="h-5 w-5" />
                 </span>
                 WhatsApp и Telegram — отвечаем быстро
@@ -78,11 +78,11 @@ export default function Booking() {
           </div>
 
           <Card className="border-border/60 shadow-2xl shadow-black/30">
-            <CardContent className="p-6 sm:p-8">
-              <form onSubmit={submit} className="space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
+            <CardContent className="p-4 sm:p-6 lg:p-8">
+              <form onSubmit={submit} className="space-y-3 sm:space-y-4">
+                <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                   <div className="space-y-1.5">
-                    <Label htmlFor="b-name">Ваше имя *</Label>
+                    <Label htmlFor="b-name" className="text-sm sm:text-base">Ваше имя *</Label>
                     <Input
                       id="b-name"
                       placeholder="Иван"
@@ -92,7 +92,7 @@ export default function Booking() {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="b-phone">Телефон *</Label>
+                    <Label htmlFor="b-phone" className="text-sm sm:text-base">Телефон *</Label>
                     <Input
                       id="b-phone"
                       type="tel"
@@ -105,7 +105,7 @@ export default function Booking() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label>Услуга</Label>
+                  <Label className="text-sm sm:text-base">Услуга</Label>
                   <Select value={service} onValueChange={setService}>
                     <SelectTrigger>
                       <SelectValue placeholder="Выберите услугу" />
@@ -121,19 +121,19 @@ export default function Booking() {
                   </Select>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                   <div className="space-y-1.5">
-                    <Label htmlFor="b-date">Дата</Label>
+                    <Label htmlFor="b-date" className="text-sm sm:text-base">Дата</Label>
                     <Input id="b-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="b-time">Время</Label>
+                    <Label htmlFor="b-time" className="text-sm sm:text-base">Время</Label>
                     <Input id="b-time" type="time" min="09:00" max="20:00" value={time} onChange={(e) => setTime(e.target.value)} />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label htmlFor="b-comment">Комментарий</Label>
+                  <Label htmlFor="b-comment" className="text-sm sm:text-base">Комментарий</Label>
                   <Textarea
                     id="b-comment"
                     placeholder="Марка и модель авто, пожелания…"
@@ -144,7 +144,7 @@ export default function Booking() {
                 </div>
 
                 {errors.length > 0 && (
-                  <p className="text-sm text-destructive">Заполните имя и телефон — без них мы не сможем подтвердить запись.</p>
+                  <p className="text-xs sm:text-sm text-destructive">Заполните имя и телефон — без них мы не сможем подтвердить запись.</p>
                 )}
 
                 <Button type="submit" size="lg" className="w-full gap-2 font-bold">
@@ -161,15 +161,15 @@ export default function Booking() {
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md mx-4 sm:mx-auto">
           <DialogHeader>
-            <DialogTitle className="font-display text-2xl uppercase">Заявка готова!</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="font-display text-xl sm:text-2xl uppercase">Заявка готова!</DialogTitle>
+            <DialogDescription className="text-sm sm:text-base">
               Отправьте её нам в мессенджер одним нажатием — текст уже составлен.
               Либо просто позвоните.
             </DialogDescription>
           </DialogHeader>
-          <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted/50 p-3 sm:p-4 text-xs sm:text-sm">
             {message()}
           </pre>
           <div className="flex flex-col gap-2">
